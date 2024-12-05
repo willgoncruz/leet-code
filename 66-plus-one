@@ -1,0 +1,24 @@
+func plusOne(digits []int) []int {
+    i := len(digits) - 1
+    d := 1
+
+    for i >= 0 {
+        curr := digits[i]
+        newSum := curr + d
+        digits[i] = newSum % 10
+
+        if newSum % 10 == 0 && newSum > 0 {
+            d = 1
+        } else {
+            d = 0
+        }
+
+        i = i - 1
+    }
+
+    if d == 1 {
+        digits = append([]int{d}, digits...)
+    }
+
+    return digits
+}

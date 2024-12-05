@@ -1,0 +1,45 @@
+func reverse(str string) (result string) { 
+    for _, v := range str { 
+        result = string(v) + result 
+    } 
+    return
+} 
+
+func addBinary(a string, b string) string {
+    d := 0
+    s := ""
+    
+    a = reverse(a)
+    b = reverse(b)
+
+    i := 0
+    curr := 0
+    size := max(len(a), len(b))
+
+    for i < size {
+        curr = d
+        
+        if i < len(a) {
+            curr = curr + int(a[i] - '0')
+        }
+
+        if i < len(b) {
+            curr = curr + int(b[i] - '0')
+        }
+
+        if curr > 1 {
+            d = 1
+        } else {
+            d = 0
+        }
+
+        s = strconv.Itoa(curr % 2) + s
+        i = i + 1
+    }
+
+    if d > 0 {
+        s = strconv.Itoa(1) + s
+    }
+
+    return s
+}

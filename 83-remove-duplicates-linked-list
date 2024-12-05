@@ -1,0 +1,27 @@
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func deleteDuplicates(head *ListNode) *ListNode {
+    if head == nil {
+        return nil
+    }
+
+    curr := head
+    newHead := &ListNode{Val: head.Val}
+    first := newHead
+
+    for curr != nil {
+        if curr.Val != newHead.Val {
+            newHead.Next = &ListNode{Val: curr.Val}
+            newHead = newHead.Next
+        } else {
+            curr = curr.Next
+        }
+    }
+
+    return first
+}

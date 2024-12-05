@@ -1,0 +1,25 @@
+func isIsomorphic(s string, t string) bool {
+    mappingST := [256]int{}
+    mappingTS := [256]int{}
+
+    for i, _ := range mappingST {
+        mappingST[i] = -1
+        mappingTS[i] = -1
+    }
+
+    for i, _ := range s {
+        sValue := int(s[i] - '0')
+        tValue := int(t[i] - '0')
+
+        if mappingST[sValue] == -1 && mappingTS[tValue] == -1 {
+            mappingST[sValue] = tValue
+            mappingTS[tValue] = sValue
+        } else {
+            if mappingST[sValue] != tValue || mappingTS[tValue] != sValue {
+                return false
+            }
+        }
+    }
+
+    return true
+}
